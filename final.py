@@ -1,12 +1,3 @@
-"""
-==================================================================
-    MENTAL HEALTH EXPERT SYSTEM - REAL-TIME VERSION
-    Interactive Assessment + CSP Constraints + Expert Rules
-    Python Implementation with Knowledge Base
-==================================================================
-"""
-
-import json
 from datetime import datetime
 from typing import List, Dict, Tuple
 
@@ -114,4 +105,54 @@ class MentalHealthExpertSystem:
                 'continued_use_despite_harm'
             ]
         }
+        
+        # SYMPTOM SEVERITY WEIGHTS (Heuristics)
+        self.weights = {
+        # CRITICAL - Immediate intervention (10 points)
+        'suicidal_thoughts': 10,
+        'fear_of_dying': 8,
+            
+        # SEVERE - Urgent care needed (5-7 points)
+        'intrusive_memories': 6,
+        'flashbacks': 7,
+        'chest_pain': 6,
+        'persistent_sadness': 5,
+        'loss_of_interest': 5,
+        'nightmares': 5,
+        'periods_of_high_energy': 6,
+        'distorted_body_image': 6,
+            
+        # MODERATE - Professional help recommended (3-4 points)
+        'excessive_worry': 4,
+        'restlessness': 3,
+        'difficulty_concentrating': 3,
+        'muscle_tension': 3,
+        'sleep_problems': 4,
+        'fear_of_judgment': 3,
+        'avoid_social_situations': 4,
+        'fatigue': 3,
+        'emotional_exhaustion': 4,
+        'repetitive_behaviors': 4,
+        'mood_swings': 4,
+        'binge_eating': 4,
+        'unable_to_control_use': 5,
+            
+        # MILD - Monitoring needed (1-2 points)
+        'cynicism': 2,
+        'reduced_performance': 2,
+        'sleep_changes': 2,
+        'low_energy_seasonal': 2,
+        'physical_symptoms_in_public': 2,
+        'weight_gain': 2
+        }
+        
+        # Default weight for unlisted symptoms
+        self.default_weight = 2
+        
+        # HIGH RISK SYMPTOMS (Crisis Detection)
+        self.high_risk_symptoms = [
+            'suicidal_thoughts',
+            'self_harm',
+            'fear_of_dying'
+        ]
         
