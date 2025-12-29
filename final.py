@@ -156,3 +156,94 @@ class MentalHealthExpertSystem:
             'fear_of_dying'
         ]
         
+        # TREATMENT RECOMMENDATIONS (Evidence-Based)
+        self.recommendations = {
+            'major_depression': [
+                "URGENT: Contact mental health professional within 24-48 hours",
+                "Treatment: Cognitive Behavioral Therapy (CBT) proven most effective",
+                "Medication: SSRI antidepressants (Prozac, Zoloft) if needed",
+                "Daily activity scheduling - combat withdrawal",
+                "Crisis Support: National Suicide Prevention Lifeline 988"
+            ],
+            
+            'gad': [
+                "Schedule therapy appointment within 1-2 weeks",
+                "Treatment: CBT for anxiety - highly effective",
+                "Practice: Progressive muscle relaxation (20 min daily)",
+                "Reduce caffeine intake significantly",
+                "Establish consistent sleep schedule"
+            ],
+            
+            'panic_disorder': [
+                "Medical evaluation needed - rule out heart issues first",
+                "Treatment: Panic-focused CBT + breathing techniques",
+                "Learn interoceptive exposure (face physical sensations)",
+                "Avoid alcohol and caffeine - both worsen panic",
+                "Emergency: 911 if severe chest pain"
+            ],
+            
+            'social_anxiety': [
+                "Treatment: CBT with gradual exposure therapy",
+                "Start exposure hierarchy (easiest situations first)",
+                "Challenge negative thoughts about social judgment",
+                "Join safe group activities to practice",
+                "Beta-blockers may help performance anxiety (doctor prescribed)"
+            ],
+            
+            'ptsd': [
+                "URGENT: Trauma-specialized therapist required",
+                "Treatment: EMDR or Prolonged Exposure Therapy",
+                "Establish safety first before processing trauma",
+                "Avoid alcohol/drug self-medication",
+                "Veterans: Call 988 then press 1"
+            ],
+            
+            'ocd': [
+                "Treatment: Exposure and Response Prevention (ERP) therapy",
+                "Higher-dose SSRIs often needed (vs depression doses)",
+                "Resist compulsions gradually - start small",
+                "Find OCD specialist: iocdf.org therapist directory",
+                "Family education important for support"
+            ],
+            
+            'bipolar': [
+                "Psychiatric evaluation URGENT - medication required",
+                "Treatment: Mood stabilizers (Lithium/Valproate) essential",
+                "Sleep regulation absolutely critical for stability",
+                "Avoid alcohol/drugs - destabilizes mood severely",
+                "Regular monitoring needed - don't skip appointments"
+            ],
+            
+            'burnout': [
+                "Take immediate time off work if possible",
+                "Set firm work-life boundaries",
+                "Therapy: Address perfectionism patterns",
+                "Reconnect with purpose or consider career change",
+                "Delegate tasks - you cannot do everything"
+            ],
+            
+            'sad': [
+                "Light therapy: 10,000 lux light box - 30 min morning",
+                "Vitamin D supplementation (check levels)",
+                "Maximize outdoor time during daylight",
+                "Maintain exercise through winter months",
+                "Preventive SSRI before winter if severe"
+            ],
+            
+            'eating_disorder': [
+                "Medical evaluation URGENT - can be life-threatening",
+                "Treatment: Specialized eating disorder program",
+                "CBT-E (Enhanced CBT) for eating disorders",
+                "Nutritionist + therapist team approach",
+                "NEDA Helpline: 1-800-931-2237"
+            ],
+            
+            'substance_use': [
+                "Medical detox may be needed - DON'T quit cold turkey",
+                "Treatment: Motivational Enhancement + CBT",
+                "Support groups: AA/NA or SMART Recovery",
+                "Address underlying mental health issues",
+                "SAMHSA Helpline: 1-800-662-4357"
+            ]
+        }
+        
