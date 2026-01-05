@@ -246,4 +246,46 @@ class MentalHealthExpertSystem:
                 "SAMHSA Helpline: 1-800-662-4357"
             ]
         }
+
+    def ask_symptom(self, symptom: str) -> bool:
+        """
+        Real-time interactive questioning
+        Asks user about specific symptom and stores answer
+        """
+        symptom_display = symptom.replace('_', ' ').title()
+        
+        while True:
+            response = input(f"\n  ➤ {symptom_display}? (yes/no): ").strip().lower()
+            
+            if response in ['yes', 'y']:
+                self.answers[symptom] = True
+                
+                # Check for high-risk symptoms
+                if symptom in self.high_risk_symptoms:
+                    self.risk_factors.append(symptom)
+                
+                return True
+            elif response in ['no', 'n']:
+                self.answers[symptom] = False
+                return False
+            else:
+                print("  ⚠️  Please answer 'yes' or 'no'")
+    
+    def count_yes(self, symptoms: List[str]) -> int:
+        """Count how many symptoms user confirmed as 'yes'"""
+        return sum(1 for s in symptoms if self.answers.get(s, False))
+    
+    def calculate_severity(self, symptoms: List[str]) -> int:
+        """
+        Calculate severity score using weighted heuristics
+        Sum of weights for all 'yes' symptoms
+        """
+        score = 0
+        for symptom in symptoms:
+            if self.answers.get(symptom, False):
+                weight = self.weights.get(symptom, self.default_weight)
+                score += weight
+        return score
+    
+
         
