@@ -287,5 +287,59 @@ class MentalHealthExpertSystem:
                 score += weight
         return score
     
+    def calculate_confidence(self, yes_count: int, total: int) -> float:
+        """Calculate confidence percentage"""
+        return (yes_count / total * 100) if total > 0 else 0
+    
+    def get_severity_level(self, score: int) -> str:
+        """Classify severity level based on score"""
+        if score >= 20:
+            return 'SEVERE'
+        elif score >= 12:
+            return 'MODERATE'
+        elif score >= 8:
+            return 'MILD'
+        else:
+            return 'MINIMAL'
+    
+    def meets_csp_constraints(self, yes_count: int, severity: int, confidence: float) -> bool:
+        """
+        CSP CONSTRAINTS for diagnosis
+        All three conditions must be met:
+        1. At least 3 symptoms matched
+        2. Severity score >= 8
+        3. Confidence >= 40%
+        """
+        return yes_count >= 3 and severity >= 8 and confidence >= 40
+        
+    
+    def diagnose_condition(self, condition: str) -> Dict:
+        """
+        Diagnose a specific condition
+        Returns diagnosis result with metrics
+        """
+        symptoms = self.symptoms[condition]
+        
+        for symptom in symptoms:
+            if symptom not in self.answers:
+                self.ask_symptom(symptom)
+        
+        yes_count = self.count_yes(symptoms)
+        severity = self.calculate_severity(symptoms)
+        confidence = self.calculate_confidence(yes_count, len(symptoms))
+        
+        if self.meets_csp_constraints(yes_count, severity, confidence):
+            return {
+                'condition': condition,
+                'yes_count': yes_count,
+                'severity': severity,
+                'confidence': confidence,
+                'level': self.get_severity_level(severity),
+                'diagnosed': True
+            }
+        
+        return None
+    
+
 
         
