@@ -340,6 +340,36 @@ class MentalHealthExpertSystem:
         
         return None
     
+    def check_crisis(self):     
+        if self.risk_factors:
+            print("\n" + "="*50)
+            print("║  ⚠️  CRISIS ALERT - HIGH RISK DETECTED ⚠️  ║")
+            print("="*50)
+            print(f"\nHigh-risk symptoms detected: {', '.join(self.risk_factors)}")
+            print("\n🚨 IMMEDIATE ACTIONS:")
+            print("1. Call 988 (Suicide & Crisis Lifeline) NOW")
+            print("2. Go to emergency room if in immediate danger")
+            print("3. Do NOT stay alone - contact someone immediately")
+            print("4. Remove means of self-harm")
+            print()
+    
+    def display_result(self, result: Dict):
+        print("\n┌" + "─"*48 + "┐")
+        print(f"│ CONDITION: {result['condition'].upper()}")
+        print("├" + "─"*48 + "┤")
+        print(f"│ Symptoms Matched: {result['yes_count']}")
+        print(f"│ Severity Score: {result['severity']} ({result['level']})")
+        print(f"│ Confidence: {result['confidence']:.1f}%")
+        print("└" + "─"*48 + "┘")
+    
+    def show_recommendations(self, condition: str):
+        if condition in self.recommendations:
+            print(f"\n━━ {condition.upper()} TREATMENT RECOMMENDATIONS ━━")
+            for rec in self.recommendations[condition]:
+                print(f"  • {rec}")
+    
+    def clear_session(self):
+        self.answers.clear()
+        self.risk_factors.clear()
+    
 
-
-        
