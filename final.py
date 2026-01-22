@@ -372,4 +372,57 @@ class MentalHealthExpertSystem:
         self.answers.clear()
         self.risk_factors.clear()
     
-
+    def run_assessment(self):
+        self.clear_session()
+        
+        print("\n" + "="*55)
+        print("║   MENTAL HEALTH EXPERT SYSTEM v3.0              ║")
+        print("║   Real-Time Interactive Assessment               ║")
+        print("="*55 + "\n")
+        
+        print("This system screens for 11 mental health conditions.")
+        print("Answer honestly - all responses are confidential.")
+        print("Available conditions: GAD, Panic Disorder, Social Anxiety,")
+        print("Major Depression, SAD, PTSD, Burnout, OCD, Bipolar,")
+        print("Eating Disorders, Substance Use\n")
+        
+        input("Press Enter to begin assessment...")
+        
+        results = []
+        for condition in self.symptoms.keys():
+            result = self.diagnose_condition(condition)
+            if result:
+                results.append(result)
+        
+        self.check_crisis()
+        
+        print("\n" + "="*55)
+        print("║            ASSESSMENT RESULTS                    ║")
+        print("="*55 + "\n")
+        
+        if not results:
+            print("✓ No significant conditions detected based on screening\n")
+            print("General Recommendations:")
+            print("  • Continue healthy lifestyle practices")
+            print("  • Monitor mental health regularly")
+            print("  • Seek help if symptoms develop or worsen")
+        else:
+            print(f"Found {len(results)} condition(s) meeting diagnostic criteria:\n")
+            
+            for result in results:
+                self.display_result(result)
+            
+            print("\n" + "="*55)
+            print("║         TREATMENT RECOMMENDATIONS                ║")
+            print("="*55)
+            
+            for result in results:
+                self.show_recommendations(result['condition'])
+        
+        print("\n" + "─"*55)
+        print("DISCLAIMER: This is a screening tool, NOT a diagnosis.")
+        print("Consult a qualified mental health professional for")
+        print("comprehensive evaluation and treatment.")
+        print("─"*55 + "\n")
+        
+        self.save_report(results)
