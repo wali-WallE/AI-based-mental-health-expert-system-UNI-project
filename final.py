@@ -426,3 +426,51 @@ class MentalHealthExpertSystem:
         print("─"*55 + "\n")
         
         self.save_report(results)
+
+         
+    def save_report(self, results: List[Dict]):
+        report = {
+            'timestamp': datetime.now().isoformat(),
+            'results': results,
+            'risk_factors': self.risk_factors,
+            'total_conditions': len(results)
+        }
+        
+        filename = f"mental_health_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        
+        try:
+            with open(filename, 'w') as f:
+                json.dump(report, f, indent=4)
+            print(f"📄 Report saved: {filename}")
+        except Exception as e:
+            print(f"⚠️  Could not save report: {e}")
+    
+    def demo_mode(self):
+        print("\n=== DEMO MODE ===")
+        print("Simulating Generalized Anxiety Disorder symptoms...\n")
+        
+        self.answers = {
+            'excessive_worry': True,
+            'restlessness': True,
+            'difficulty_concentrating': True,
+            'muscle_tension': True,
+            'sleep_problems': True
+        }
+        
+        symptoms = self.symptoms['gad']
+        yes_count = self.count_yes(symptoms)
+        severity = self.calculate_severity(symptoms)
+        confidence = self.calculate_confidence(yes_count, len(symptoms))
+        
+        result = {
+            'condition': 'gad',
+            'yes_count': yes_count,
+            'severity': severity,
+            'confidence': confidence,
+            'level': self.get_severity_level(severity),
+            'diagnosed': True
+        }
+        
+        print("DEMO RESULTS:")
+        self.display_result(result)
+        self.show_recommendations('gad')
