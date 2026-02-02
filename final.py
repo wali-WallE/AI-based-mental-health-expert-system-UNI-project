@@ -474,3 +474,27 @@ class MentalHealthExpertSystem:
         print("DEMO RESULTS:")
         self.display_result(result)
         self.show_recommendations('gad')
+
+def main():
+    """Main entry point"""
+    system = MentalHealthExpertSystem()
+    
+    print("\n🧠 Mental Health Expert System")
+    print("─"*40)
+    print("1. Start Interactive Assessment")
+    print("2. Run Demo Mode")
+    print("3. Exit")
+    
+    choice = input("\nSelect option (1-3): ").strip()
+    
+    if choice == '1':
+        system.run_assessment()
+    elif choice == '2':
+        system.demo_mode()
+    elif choice == '3':
+        print("Thank you for using the Mental Health Expert System.")
+    else:
+        print("Invalid choice. Please run again.")
+
+if __name__ == "__main__":
+    main()
